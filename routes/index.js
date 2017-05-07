@@ -50,6 +50,11 @@ router.get('/author', function (req, res, next) {
     res.render('author');
 });
 
+/* GET help page. */
+router.get('/Ayuda', function (req, res, next) {
+    res.render('help');
+});
+
 
 // Autoload de rutas que usen :quizId
 router.param('quizId', quizController.load);
