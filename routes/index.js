@@ -11,4 +11,9 @@ router.get('/author', function(req, res, next) {
     res.render('author');
 });
 
+/* GET help page. */
+router.get('/Ayuda', function(req, res, next) {
+  res.render('index');
+});
+
 module.exports = router;
