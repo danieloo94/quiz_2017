@@ -13,7 +13,7 @@ router.get('/author', function(req, res, next) {
 
 /* GET help page. */
 router.get('/Ayuda', function(req, res, next) {
-  res.render('index');
+  res.render('Ayuda');
 });
 
 module.exports = router;
