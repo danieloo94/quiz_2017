@@ -20,7 +20,7 @@ router.get('/Ayuda', function(req, res, next) {
 });
 
 // Autoload de rutas que usen quizId
-router.param('quizId', quizController.load); // autoload :quizId
+//router.param('quizId', quizController.load); // autoload :quizId
 
 //Definición de rutas de /quizzes
 //router.get('/quizzes/:quizId(\\d+)', quizController.show);
