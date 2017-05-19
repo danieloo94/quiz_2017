@@ -6,6 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var partials = require('express-partials');
 
+//Instalacion de MW method-override
+var methodOverride = require ('method-override');
+
 var index = require('./routes/index');
 
 var app = express();
@@ -20,6 +23,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+//Instalacion de MW method-override
+app.use(methodOverride('_method', {methods: ["POST","GET"]}));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(partials());
 
