@@ -56,6 +56,13 @@ router.get('/Ayuda', function (req, res, next) {
 });
 
 
+/* GET help page. */
+router.get('/quizzes/randomplay', function (req, res, next) {
+    res.render('randomplay');
+});
+
+
+
 // Autoload de rutas que usen :quizId
 router.param('quizId', quizController.load);
 router.param('userId', userController.load);
