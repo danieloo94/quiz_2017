@@ -56,9 +56,12 @@ router.get('/Ayuda', function (req, res, next) {
 });
 
 
-/* GET help page. */
-router.get('/quizzes/randomplay', function (req, res, next) {
-    res.render('randomplay');
+router.get('/quizzes/randomplay', quizController.randomPlay);
+router.get('/quizzes/randomcheck/:quizId(\\d+)', quizController.randomCheck);
+
+// Pagina de ayuda
+router.get('/help', function(req, res, next) {
+    res.render('help');
 });
 
 
@@ -102,18 +105,16 @@ router.delete('/users/:userId(\\d+)',
 router.get('/users/:userId(\\d+)/quizzes', quizController.index);     // ver las preguntas de un usuario
 
 
-
 // Definición de rutas de /quizzes
-router.get('/quizzes.:format?',
+router.get('/quizzes',
     quizController.index);
-router.get('/quizzes/:quizId(\\d+).:format?',
+router.get('/quizzes/:quizId(\\d+)',
     quizController.show);
 router.get('/quizzes/new',
     sessionController.loginRequired,
     quizController.new);
 router.post('/quizzes',
     sessionController.loginRequired,
-    upload.single('image'),
     quizController.create);
 router.get('/quizzes/:quizId(\\d+)/edit',
     sessionController.loginRequired,
@@ -122,7 +123,6 @@ router.get('/quizzes/:quizId(\\d+)/edit',
 router.put('/quizzes/:quizId(\\d+)',
     sessionController.loginRequired,
     quizController.adminOrAuthorRequired,
-    upload.single('image'),
     quizController.update);
 router.delete('/quizzes/:quizId(\\d+)',
     sessionController.loginRequired,
@@ -147,24 +147,7 @@ router.put('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)/accept',
     tipController.accept);
 router.delete('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)',
     sessionController.loginRequired,
-    tipController.destroy);
-
-
-// Rutas de Favoritos
-router.get('/users/:userId(\\d+)/favourites',
-    sessionController.loginRequired,
-    sessionController.myselfRequired,
-    favouriteController.index);
-
-router.put('/users/:userId(\\d+)/favourites/:quizId(\\d+)',
-    sessionController.loginRequired,
-    sessionController.adminOrMyselfRequired,
-    favouriteController.add);
-
-router.delete('/users/:userId(\\d+)/favourites/:quizId(\\d+)',
-    sessionController.loginRequired,
-    sessionController.adminOrMyselfRequired,
-    favouriteController.del);
+    tipController.destroy)
 
 
 
